@@ -104,7 +104,14 @@
     [set1 setColor:[UIColor colorWithRed:104/255.f green:241/255.f blue:175/255.f alpha:1.f]];
     set1.fillColor = [UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f];
     set1.drawHorizontalHighlightIndicatorEnabled = NO;
-    
+
+    set1.fillAlpha = 0.5;
+    set1.drawFilledWithGradientEnabled = YES;
+    set1.gradientColors = @[[UIColor greenColor], [UIColor yellowColor], [UIColor blueColor]];
+    set1.gradientColorLocations = @[ @(0.0), @(0.2), @(1.0) ];
+    set1.gradientStartPoint = CGPointMake(0, _chartView.frame.size.height);
+    set1.gradientEndPoint = CGPointMake(0, 0);
+
     LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSet:set1];
     [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:9.f]];
     [data setDrawValues:NO];

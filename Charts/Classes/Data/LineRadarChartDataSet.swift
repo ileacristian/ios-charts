@@ -18,9 +18,16 @@ import UIKit
 public class LineRadarChartDataSet: LineScatterCandleChartDataSet
 {
     public var fillColor = UIColor(red: 140.0/255.0, green: 234.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-    public var fillAlpha = CGFloat(0.33)
+    public var fillAlpha = CGFloat(1.0)
     private var _lineWidth = CGFloat(1.0)
     public var drawFilledEnabled = false
+
+    public var drawFilledWithGradientEnabled:Bool = false
+    public var gradientColors:[UIColor] = [UIColor.greenColor(), UIColor.redColor()]
+    public var gradientColorLocations:[CGFloat] = [0.0, 1.0]
+    public var gradientStartPoint:CGPoint = CGPoint(x: 0, y: 100)
+    public var gradientEndPoint:CGPoint = CGPoint(x: 0, y: 0)
+
     
     /// line width of the chart (min = 0.2, max = 10)
     /// 

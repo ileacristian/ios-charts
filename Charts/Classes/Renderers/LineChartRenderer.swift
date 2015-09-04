@@ -234,11 +234,18 @@ public class LineChartRenderer: LineScatterCandleRadarChartRenderer
         CGContextAddLineToPoint(context, pt1.x, pt1.y)
         CGContextAddLineToPoint(context, pt2.x, pt2.y)
         CGContextClosePath(context)
-        
-        CGContextSetFillColorWithColor(context, dataSet.fillColor.CGColor)
         CGContextSetAlpha(context, dataSet.fillAlpha)
-        CGContextFillPath(context)
-        
+
+        if (dataSet.drawFilledWithGradientEnabled) {
+            CGContextClip(context)
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            let gradient = CGGradientCreateWithColors(colorSpace, dataSet.gradientColors.map({ $0.CGColor }), dataSet.gradientColorLocations)
+            CGContextDrawLinearGradient(context, gradient, dataSet.gradientStartPoint, dataSet.gradientEndPoint, CGGradientDrawingOptions(rawValue: 0))
+        } else {
+            CGContextSetFillColorWithColor(context, dataSet.fillColor.CGColor)
+            CGContextFillPath(context)
+        }
+
         CGContextRestoreGState(context)
     }
     
